@@ -2,14 +2,16 @@ var ProgramList = React.createClass({
   getInitialState: function() {
     return {
       filterText: '',
-      withoutPPV: false
+      withoutPPV: false,
+      provider: ''
     };
   },
 
-  handleUserInput: function(filterText, withoutPPV) {
+  handleUserInput: function(filterText, withoutPPV, provider) {
     this.setState({
       filterText: filterText,
-      withoutPPV: withoutPPV
+      withoutPPV: withoutPPV,
+      provider: provider
     });
   },
 
@@ -26,12 +28,13 @@ var ProgramList = React.createClass({
     this.props.programs.forEach(function(program) {
       if(self.state.withoutPPV && program.ppv) { return };
       if(self.state.filterText.length > 0 && program.title.indexOf(self.state.filterText) == -1) { return };
+      if(self.state.provider.length > 0 && program.provider != self.state.provider) { return };
       programs.push(<Program { ...program } key={program.id} />);
     });
 
     return (
       <div>
-      <SearchBar filterText={this.state.filterText} withoutPPV={this.state.withoutPPV} onUserInput={this.handleUserInput} />
+      <SearchBar filterText={this.state.filterText} withoutPPV={this.state.withoutPPV} provider={this.state.provider} count={programs.length} onUserInput={this.handleUserInput} />
 
       <div className="programs">
         { programs }
