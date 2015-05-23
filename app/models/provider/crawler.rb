@@ -1,0 +1,2 @@
+class Provider::Crawler
+end
