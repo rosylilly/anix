@@ -13,6 +13,7 @@ gem 'moji'
 gem 'slim-rails'
 gem 'react-rails'
 gem 'rails_12factor', group: :production
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'
