@@ -11,9 +11,10 @@ var Program = React.createClass({
 
     return (
       <div className={ className }>
-        <h2>
-          <a href={this.props.url} target="_blank">{this.props.title}</a>
-        </h2>
+        <a href={this.props.url} target="_blank">
+          <img src={this.props.thumbnail_url} />
+          <span className="title">{this.props.title}</span>
+        </a>
         <p><span className="label label-primary">{this.providerName()}</span></p>
       </div>
     );

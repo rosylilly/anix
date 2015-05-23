@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523174441) do
+ActiveRecord::Schema.define(version: 20150523210353) do
 
   create_table "programs", force: :cascade do |t|
-    t.string   "title",      limit: 255,                 null: false
-    t.string   "url",        limit: 255,                 null: false
-    t.string   "provider",   limit: 80,                  null: false
-    t.boolean  "ppv",                    default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "title",         limit: 255,                 null: false
+    t.string   "url",           limit: 255,                 null: false
+    t.string   "provider",      limit: 80,                  null: false
+    t.boolean  "ppv",                       default: false, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "thumbnail_url", limit: 255
   end
 
   add_index "programs", ["url"], name: "index_programs_on_url", unique: true, using: :btree

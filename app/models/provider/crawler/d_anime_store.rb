@@ -17,7 +17,8 @@ class Provider::Crawler::DAnimeStore
         programs << {
           title: work.css('h2.movieTitleA').first.text.strip,
           url: File.join(BASE_URL, work['href'].strip),
-          ppv: false, provider: :d_anime_store
+          ppv: false, provider: :d_anime_store,
+          thumbnail_url: work.css('.delayImg').first['data-img-src'].strip
         }
       end
     end
@@ -27,9 +28,11 @@ class Provider::Crawler::DAnimeStore
 
   def crawl!
     programs = products.map do |product|
-      Program.where(url: product[:url]).first_or_initialize(product)
+      program = Program.where(url: product[:url]).first_or_initialize(product)
+      program.assign_attributes(product)
+      program
     end
 
-    Program.import(programs, on_duplicate_key_update: %i(title ppv))
+    Program.import(programs, on_duplicate_key_update: %i(title thumbnail_url))
   end
 end

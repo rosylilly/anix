@@ -44,5 +44,21 @@ body {
 }
 
 .programs {
-  padding: 122px 30px 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 122px 0 0 0;
+}
+
+.program {
+  padding: 10px 5px;
+  width: 12.5%;
+}
+
+.program img {
+  display: block;
+  width: 100%;
+}
+
+.program .title {
+  font-size: 80%;
 }
