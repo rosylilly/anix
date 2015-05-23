@@ -10,7 +10,7 @@ var Program = React.createClass({
   },
 
   componentDidUpdate: function(prevProps) {
-    if (! this.props.showThumbnail && prevProps.viewport) {
+    if (!this.props.showThumbnail) {
       this.updatePosition();
     }
   },
