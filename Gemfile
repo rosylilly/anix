@@ -14,6 +14,7 @@ gem 'slim-rails'
 gem 'react-rails'
 gem 'rails_12factor', group: :production
 gem 'puma'
+gem 'activerecord-import'
 
 group :development, :test do
   gem 'byebug'

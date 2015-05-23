@@ -26,9 +26,10 @@ class Provider::Crawler::DAnimeStore
   end
 
   def crawl!
-    products.each do |product|
-      program = Program.where(url: product[:url]).first_or_create(product)
-      program.update(product)
+    programs = products.map do |product|
+      Program.where(url: product[:url]).first_or_initialize(product)
     end
+
+    Program.import(programs, on_duplicate_key_update: %i(title ppv))
   end
 end
