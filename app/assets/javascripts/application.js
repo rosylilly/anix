@@ -13,4 +13,5 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require echo.min
 //= require_tree .

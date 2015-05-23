@@ -3,8 +3,34 @@ var ProgramList = React.createClass({
     return {
       filterText: '',
       withoutPPV: false,
-      provider: ''
+      provider: '',
+      viewport: {
+        top: 0,
+        height: 0
+      }
     };
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('scroll', this.updateViewport, false);
+    window.addEventListener('resize', this.updateViewport, false);
+    this.updateViewport();
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('scroll', this.updateViewport);
+    window.removeEventListener('resize', this.updateViewport);
+  },
+
+  updateViewport: function() {
+    // TODO: debounce this call
+    console.debug('update view port');
+    this.setState({
+      viewport: {
+        top: window.pageYOffset,
+        height: window.innerHeight
+      }
+    });
   },
 
   handleUserInput: function(filterText, withoutPPV, provider) {
@@ -29,7 +55,7 @@ var ProgramList = React.createClass({
       if(self.state.withoutPPV && program.ppv) { return };
       if(self.state.filterText.length > 0 && program.title.indexOf(self.state.filterText) == -1) { return };
       if(self.state.provider.length > 0 && program.provider != self.state.provider) { return };
-      programs.push(<Program { ...program } key={program.id} />);
+      programs.push(<Program { ...program } key={program.id} viewport={self.state.viewport} />);
     });
 
     return (

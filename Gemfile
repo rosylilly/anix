@@ -15,6 +15,7 @@ gem 'react-rails'
 gem 'rails_12factor', group: :production
 gem 'puma'
 gem 'activerecord-import'
+gem 'camo'
 
 group :development, :test do
   gem 'byebug'
