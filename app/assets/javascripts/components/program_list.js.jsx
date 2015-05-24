@@ -53,7 +53,7 @@ var ProgramList = React.createClass({
 
     this.props.programs.forEach(function(program) {
       if(self.state.withoutPPV && program.ppv) { return };
-      if(self.state.filterText.length > 0 && program.title.indexOf(self.state.filterText) == -1) { return };
+      if(self.state.filterText.length > 0 && program.title.toLowerCase().indexOf(self.state.filterText.toLowerCase()) == -1) { return };
       if(self.state.provider.length > 0 && program.provider != self.state.provider) { return };
       programs.push(<Program { ...program } key={program.id} viewport={self.state.viewport} />);
     });
